@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joez Johnson — Data Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#eef1f4;--panel:#fff;--ink:#1b2430;--muted:#556070;--line:#d3dae1;
+  --bronze:#a8693a;--silver:#7d8997;--gold:#b8921a;--link:#0f5c8a;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161b22;--panel:#1e252e;--ink:#e8ecf0;--muted:#a0abb8;--line:#313a46;
+  --bronze:#d08a57;--silver:#a3aebb;--gold:#e0b93c;--link:#6cb8e6;}}
+:root[data-theme="dark"]{--bg:#161b22;--panel:#1e252e;--ink:#e8ecf0;--muted:#a0abb8;--line:#313a46;--bronze:#d08a57;--silver:#a3aebb;--gold:#e0b93c;--link:#6cb8e6}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--body)}
+a{color:var(--link)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+nav{display:flex;gap:20px;flex-wrap:wrap;align-items:center;padding:20px 0;font-weight:500}
+nav a{color:var(--ink);text-decoration:none}
+nav a:hover{text-decoration:underline}
+nav .name{font-family:var(--display);font-weight:800;margin-right:auto;font-size:1.1rem}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0}
+h1{font-size:clamp(2.8rem,8vw,5.6rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:700;margin-bottom:28px}
+h3{font-size:1.25rem;font-weight:700}
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;padding:48px 0 72px}
+.lede{max-width:34em;color:var(--muted);font-size:1.1rem;margin:20px 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 20px;border-radius:6px;font-weight:500;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:hover{opacity:.85}
+.layers{display:grid;gap:10px}
+.layer{border-radius:8px;padding:16px 18px;color:#fff;transform-origin:left;animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
+.layer b{font-family:var(--display);font-size:1.15rem;display:block}
+.layer span{font-size:.92rem;opacity:.95}
+.layer code{display:block;margin-top:8px;font:500 .8rem/1.4 ui-monospace,Menlo,Consolas,monospace;opacity:.92;word-break:break-word}
+.l1{background:#8a5430;width:70%}
+.l2{background:#667382;width:85%;animation-delay:.25s}
+.l3{background:#8f7110;width:100%;animation-delay:.5s}
+@keyframes grow{from{transform:scaleX(.2);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.layer{animation:none}html{scroll-behavior:auto}}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px}
+.card.wide{grid-column:1/-1}
+.card ul{padding-left:1.1em;margin:14px 0}
+.card li{margin-bottom:6px}
+.meta{color:var(--muted);font-size:.92rem;margin:4px 0 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;padding:0;list-style:none}
+.tags li{margin:0;font-size:.82rem;padding:3px 10px;border:1px solid var(--line);border-radius:99px;color:var(--muted)}
+.status{display:inline-block;font-size:.82rem;font-weight:500;padding:2px 10px;border-radius:99px;background:var(--gold);color:#1b1b1b;margin-left:8px;vertical-align:middle}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.skills h3{font-size:1.05rem;margin-bottom:10px}
+.skills p{margin:0;color:var(--muted)}
+.timeline{display:grid;gap:28px}
+.item{display:grid;grid-template-columns:180px 1fr;gap:24px}
+.item .when{color:var(--muted);font-size:.92rem}
+.item ul{padding-left:1.1em;margin:10px 0 0}
+.item li{margin-bottom:5px}
+footer{padding:56px 0 72px;border-top:1px solid var(--line)}
+footer p{max-width:32em;color:var(--muted)}
+@media (max-width:780px){
+  .hero{grid-template-columns:1fr;gap:36px}
+  .projects{grid-template-columns:1fr}
+  .item{grid-template-columns:1fr;gap:6px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Main">
+    <span class="name">Joez Johnson</span>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1>Joez Johnson</h1>
+      <p class="lede">Computer Engineering student at Iowa State University building batch and streaming data pipelines with Python, SQL, PySpark, Kafka and Databricks. Looking for a data engineering internship.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="https://github.com/aymbushjo">GitHub</a>
+        <a class="btn" href="mailto:aymbushjo@gmail.com">Email me</a>
+      </div>
+    </div>
+    <div class="layers" aria-label="Medallion architecture: Bronze, Silver, Gold layers">
+      <div class="layer l1"><b>Bronze</b><span>Raw data, landed as it arrives</span><code>{"genres":[{"id":18},{"id":80}], ...}</code></div>
+      <div class="layer l2"><b>Silver</b><span>Typed, deduplicated, exploded</span><code>movie_id | genre | budget | revenue</code></div>
+      <div class="layer l3"><b>Gold</b><span>Analytics-ready tables</span><code>genre | avg_roi | total_revenue</code></div>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <article class="card wide">
+        <h3>F1 Motor Racing Analytics Pipeline <span class="status">In progress</span></h3>
+        <p class="meta">Ongoing</p>
+        <ul>
+          <li>Extracts Formula 1 racing data from a REST API and lands the raw data in Amazon S3.</li>
+          <li>Transforms it in Databricks with PySpark across Bronze, Silver and Gold layers, with analytics-ready dimensional models.</li>
+          <li>Orchestrates ingestion and transformation with Apache Airflow, and presents insights from the Gold layer in Power BI dashboards.</li>
+        </ul>
+        <ul class="tags"><li>Amazon S3</li><li>Databricks</li><li>PySpark</li><li>Airflow</li><li>Power BI</li></ul>
+      </article>
+
+      <article class="card">
+        <h3>Real-Time Stock Market Data Pipeline</h3>
+        <p class="meta">Summer 2026 · <a href="https://github.com/aymbushjo/real-time-stock-market-pipeline">GitHub</a></p>
+        <ul>
+          <li>Streams simulated stock-market data through Kafka producers and consumers written in Python.</li>
+          <li>Ingests the stream into Snowflake for storage and SQL analytics.</li>
+          <li>Uses dbt to build staging and analytics-ready models in a layered ELT workflow.</li>
+          <li>Documents setup, architecture and data flow so others can reproduce it.</li>
+        </ul>
+        <ul class="tags"><li>Kafka</li><li>Python</li><li>Snowflake</li><li>dbt</li></ul>
+      </article>
+
+      <article class="card">
+        <h3>TMDB Movie Data Engineering Pipeline</h3>
+        <p class="meta">Summer 2026 · <a href="https://github.com/aymbushjo/TMDB_DE_PROJECT">GitHub</a></p>
+        <ul>
+          <li>Extracts movie metadata from the TMDB REST API into a Databricks lakehouse.</li>
+          <li>Flattens nested JSON with PySpark: schema standardization, type casting, deduplication and array explosion.</li>
+          <li>Builds Bronze, Silver and Gold Delta layers, then SQL tables for genre and language performance, production-company revenue and movie ROI.</li>
+        </ul>
+        <ul class="tags"><li>PySpark</li><li>Delta Lake</li><li>Databricks</li><li>SQL</li><li>REST API</li></ul>
+      </article>
+
+      <article class="card wide">
+        <h3>CSV Data Cleaning and Transformation Pipeline</h3>
+        <p class="meta">Spring 2026</p>
+        <ul>
+          <li>Cleans and validates a raw CSV with inconsistent, poor-quality entries in Databricks.</li>
+          <li>Applies Medallion Architecture to clean, validate and enrich the data layer by layer.</li>
+          <li>Uses PySpark to handle missing values, correct types, remove duplicates and standardize formatting, producing an analytics-ready Gold dataset.</li>
+        </ul>
+        <ul class="tags"><li>PySpark</li><li>Databricks</li><li>Medallion Architecture</li><li>Data cleaning</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div><h3>Languages</h3><p>Python, SQL</p></div>
+      <div><h3>Data engineering</h3><p>ETL/ELT, Apache Spark, PySpark, Apache Kafka, dbt, data warehousing, batch processing, streaming pipelines, Medallion Architecture, data modeling</p></div>
+      <div><h3>Cloud and data platforms</h3><p>Databricks, Snowflake, Delta Lake, Amazon S3</p></div>
+      <div><h3>Orchestration and BI</h3><p>Apache Airflow, Power BI</p></div>
+      <div><h3>Data concepts</h3><p>REST APIs, JSON processing, CSV, data cleaning, data transformation, SQL analytics</p></div>
+      <div><h3>Tools</h3><p>Git, GitHub, VS Code</p></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience and education</h2>
+    <div class="timeline">
+      <div class="item">
+        <div class="when">Aug 2026 – present<br>Ames, IA</div>
+        <div>
+          <h3>Student Dining Associate</h3>
+          <p class="meta">Iowa State University Dining</p>
+          <ul>
+            <li>Serve hundreds of students daily in a fast-paced dining hall.</li>
+            <li>Maintain cleanliness and food safety standards, and restock stations and inventory during peak hours.</li>
+            <li>Handle point-of-sale transactions and customer questions.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">Fall 2025 – Spring 2026</div>
+        <div>
+          <h3>Innovation Cell</h3>
+          <p class="meta">BITS Pilani Hyderabad</p>
+          <ul>
+            <li>Secured brand sponsorships from multiple companies for major campus events, including Tech Week (BPHC).</li>
+            <li>Negotiated partnership terms and managed sponsor relationships end to end.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">Fall 2024 – Spring 2025</div>
+        <div>
+          <h3>Department of Publicity and Public Relations</h3>
+          <p class="meta">BITS Pilani Hyderabad</p>
+          <ul>
+            <li>Managed logistics for campus visits with 300+ prospective students across multiple schools.</li>
+            <li>Built new school partnerships and drove promotion for campus fests, contributing to $20,000+ in departmental revenue.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">Spring 2026</div>
+        <div>
+          <h3>Powerlifting Team</h3>
+          <p class="meta">BITS Pilani Hyderabad</p>
+          <ul><li>Managed operations for Arena '26, where the team competed against national-level athletes and won a bronze medal.</li></ul>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">Expected May 2028</div>
+        <div>
+          <h3>B.S., Computer Engineering</h3>
+          <p class="meta">Iowa State University, Ames, IA</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="when">2024 – 2026</div>
+        <div>
+          <h3>Computer Engineering coursework</h3>
+          <p class="meta">BITS Pilani, Hyderabad Campus, India</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <h2>Contact</h2>
+    <p>I'm looking for a data engineering internship. If you're building batch or streaming pipelines, I'd like to hear about it.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:aymbushjo@gmail.com">aymbushjo@gmail.com</a>
+      <a class="btn" href="https://github.com/aymbushjo">github.com/aymbushjo</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
